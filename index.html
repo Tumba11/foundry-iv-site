@@ -94,6 +94,10 @@
   .role{color:var(--gold);font-size:.9rem;font-weight:600;margin:4px 0 12px}
   .person p{color:var(--muted);font-size:.95rem}
 
+  /* advisory */
+  .advisors{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:48px;max-width:780px}
+  .advisor{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px 30px}
+  .advisor h3{font-size:1.25rem}
 
   footer{border-top:1px solid var(--line);padding:36px 0;color:var(--muted);font-size:.88rem}
   footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
@@ -105,6 +109,7 @@
     .pillars,.quotes{grid-template-columns:1fr}
   }
   @media (max-width:720px){
+    .advisors{grid-template-columns:1fr}
     .team .person{grid-template-columns:1fr;gap:18px;padding:28px}
     .team .person .avatar{width:72px;height:72px;font-size:1.4rem}
     section{padding:72px 0}
@@ -237,6 +242,19 @@
         <p>Founded an esports agency that was sold to WME-IMG and created ELEAGUE with TBS and Turner. Today he also consults for casinos on the future of the gaming floor.</p>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section id="advisory">
+  <div class="wrap">
+    <div class="eyebrow">Advisory Board</div>
+    <h2>Who advises Foundry IV.</h2>
+    <div class="advisors">
+      <div class="advisor"><h3>Tom Hayes</h3></div>
+      <div class="advisor"><h3>Brian Witten</h3></div>
+      <div class="advisor"><h3>Sid Greenfeig</h3></div>
+      <div class="advisor"><h3>Michael Pachter</h3></div>
     </div>
   </div>
 </section>
