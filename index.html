@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Foundry IV | Skill finally matters on the casino floor</title>
+<meta name="description" content="Foundry IV is building a skill-dominant battle royale for the casino floor. Your skill decides the outcome, not a random number generator.">
+<meta property="og:title" content="Foundry IV | Skill finally matters on the casino floor">
+<meta property="og:description" content="A skill-dominant battle royale built to replace slot machines. Your skill decides the outcome.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#08090d; --bg2:#0f1118; --card:#141722; --line:#232838;
+    --text:#eef0f6; --muted:#9aa1b5; --gold:#e8b34a; --gold2:#ffd27a; --cyan:#3fd6ff;
+    --radius:16px; --max:1120px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:"Space Grotesk",Inter,sans-serif;line-height:1.1;letter-spacing:-.02em}
+  a{color:inherit}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+  .eyebrow{font-size:.78rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+  section{padding:104px 0;border-top:1px solid var(--line)}
+  section h2{font-size:clamp(2rem,4vw,3rem);margin:14px 0 20px;max-width:760px}
+  .lead{font-size:1.15rem;color:var(--muted);max-width:680px}
+
+  /* nav */
+  nav{position:sticky;top:0;z-index:10;background:rgba(8,9,13,.78);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .logo{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:1.2rem;letter-spacing:.06em;text-decoration:none}
+  .logo span{color:var(--gold)}
+  .navlinks{display:flex;gap:28px;align-items:center}
+  .navlinks a{text-decoration:none;color:var(--muted);font-size:.95rem;font-weight:500}
+  .navlinks a:hover{color:var(--text)}
+  .navlinks a.btn{color:#1a1203}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:999px;font-weight:600;text-decoration:none;transition:transform .15s ease,box-shadow .15s ease}
+  .btn-gold{background:linear-gradient(135deg,var(--gold2),var(--gold));color:#1a1203;box-shadow:0 8px 30px rgba(232,179,74,.25)}
+  .btn-gold:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(232,179,74,.35)}
+  .btn-ghost{border:1px solid var(--line);color:var(--text)}
+  .btn-ghost:hover{border-color:var(--muted)}
+  .navlinks .btn{padding:10px 20px;font-size:.9rem}
+
+  /* hero */
+  .hero{position:relative;overflow:hidden;padding:140px 0 120px;border-top:none}
+  .hero::before{content:"";position:absolute;inset:-20% -10% auto auto;width:720px;height:720px;background:radial-gradient(circle,rgba(232,179,74,.22),transparent 62%);pointer-events:none}
+  .hero::after{content:"";position:absolute;left:-200px;bottom:-260px;width:640px;height:640px;background:radial-gradient(circle,rgba(63,214,255,.14),transparent 62%);pointer-events:none}
+  .grid-bg{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:56px 56px;opacity:.35;mask-image:radial-gradient(ellipse at 60% 30%,#000 10%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse at 60% 30%,#000 10%,transparent 70%)}
+  .hero .wrap{position:relative;z-index:1}
+  .hero h1{font-size:clamp(2.7rem,7vw,5.6rem);max-width:920px;margin:20px 0 26px}
+  .hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--gold2),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero p.sub{font-size:clamp(1.1rem,2vw,1.35rem);color:var(--muted);max-width:640px;margin-bottom:40px}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap}
+
+  /* problem */
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:48px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:34px}
+  .card h3{font-size:1.4rem;margin:12px 0 12px}
+  .card p{color:var(--muted)}
+  .tag{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:6px 12px;border-radius:999px}
+  .tag-old{background:#1f2230;color:var(--muted)}
+  .tag-new{background:rgba(232,179,74,.14);color:var(--gold)}
+  .card.new{border-color:rgba(232,179,74,.4);background:linear-gradient(160deg,rgba(232,179,74,.08),var(--card) 55%)}
+
+  /* what */
+  .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+  .pillar .num{font-family:"Space Grotesk",sans-serif;font-size:.95rem;color:var(--cyan);font-weight:700}
+
+  /* why */
+  .why{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:start}
+  .creds{display:grid;gap:14px}
+  .cred{display:flex;gap:18px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px}
+  .cred .dot{flex:0 0 10px;height:10px;margin-top:9px;border-radius:50%;background:var(--gold);box-shadow:0 0 14px var(--gold)}
+  .cred strong{display:block;font-size:1.05rem}
+  .cred span{color:var(--muted);font-size:.95rem}
+
+  /* team */
+  .team{margin-top:48px;max-width:780px}
+  .team .person{display:grid;grid-template-columns:96px 1fr;gap:28px;align-items:start;padding:36px}
+  .team .person .avatar{width:96px;height:96px;font-size:1.8rem;margin-bottom:0}
+  .person{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px}
+  .avatar{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:1.3rem;background:linear-gradient(135deg,#2a2f42,#1a1d29);border:1px solid var(--line);margin-bottom:20px;color:var(--gold)}
+  .person h3{font-size:1.25rem}
+  .role{color:var(--gold);font-size:.9rem;font-weight:600;margin:4px 0 12px}
+  .person p{color:var(--muted);font-size:.95rem}
+
+
+  footer{border-top:1px solid var(--line);padding:36px 0;color:var(--muted);font-size:.88rem}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  footer a{text-decoration:none}
+  footer a:hover{color:var(--text)}
+
+  @media (max-width:900px){
+    .why{grid-template-columns:1fr;gap:36px}
+    .pillars{grid-template-columns:1fr}
+  }
+  @media (max-width:720px){
+    .team .person{grid-template-columns:1fr;gap:18px;padding:28px}
+    .team .person .avatar{width:72px;height:72px;font-size:1.4rem}
+    section{padding:72px 0}
+    .hero{padding:88px 0 80px}
+    .navlinks a:not(.btn){display:none}
+    .compare{grid-template-columns:1fr}
+    .card{padding:26px}
+    .cta-row .btn{width:100%;justify-content:center}
+    .hero::before{width:420px;height:420px;right:-160px}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#top">FOUNDRY <span>IV</span></a>
+    <div class="navlinks">
+      <a href="#problem">Why skill</a>
+      <a href="#what">What we're building</a>
+      <a href="#team">Team</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="grid-bg"></div>
+  <div class="wrap">
+    <div class="eyebrow">Skill-based gaming for the casino floor</div>
+    <h1>Skill finally matters on the <em>casino floor.</em></h1>
+    <p class="sub">Foundry IV is building a skill-dominant battle royale to replace the slot machine. The best player wins, not the random number generator.</p>
+    <div class="cta-row">
+      <a class="btn btn-gold" href="#what">See the idea &rarr;</a>
+    </div>
+  </div>
+</header>
+
+<section id="problem">
+  <div class="wrap">
+    <div class="eyebrow">The problem</div>
+    <h2>The casino floor was built for a player who's aging out.</h2>
+    <p class="lead">Slots are pure chance. You pull, you wait, the machine decides. A generation that grew up on competitive games wants the opposite: a game where getting better actually changes the result.</p>
+    <div class="compare">
+      <div class="card">
+        <span class="tag tag-old">Today</span>
+        <h3>Slot machines</h3>
+        <p>Every outcome is set by a random number generator. Practice doesn't help, and nothing you do in the moment matters.</p>
+      </div>
+      <div class="card new">
+        <span class="tag tag-new">Foundry IV</span>
+        <h3>Skill-dominant play</h3>
+        <p>Every outcome is driven by how you play. Sharper decisions and better aim win. That's the game this generation already loves.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="what">
+  <div class="wrap">
+    <div class="eyebrow">What Foundry IV is</div>
+    <h2>A battle royale, made for the casino floor.</h2>
+    <p class="lead">Think of the competitive shooters millions of people play every night, rebuilt on Unreal Engine for a casino setting, where skill decides who comes out on top.</p>
+    <div class="pillars">
+      <div class="card pillar">
+        <div class="num">01</div>
+        <h3>Skill decides</h3>
+        <p>Outcomes come from player performance, not chance. The better you play, the better you do.</p>
+      </div>
+      <div class="card pillar">
+        <div class="num">02</div>
+        <h3>A game people know</h3>
+        <p>The battle royale format is already one of the most popular ways to play. No learning curve, just a new place to compete.</p>
+      </div>
+      <div class="card pillar">
+        <div class="num">03</div>
+        <h3>Built for operators</h3>
+        <p>Designed for the floor from day one, giving casinos a way to reach players who walk right past the slot banks.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="wrap why">
+    <div>
+      <div class="eyebrow">Why us</div>
+      <h2>We've built a new category before.</h2>
+      <p class="lead">Our CEO helped turn competitive gaming from a niche into a business major media companies bet on. Now we're bringing that playbook to the casino floor, and building the company AI-native from the start.</p>
+    </div>
+    <div class="creds">
+      <div class="cred"><div class="dot"></div><div><strong>Founded an esports agency</strong><span>Built it and sold it to WME-IMG.</span></div></div>
+      <div class="cred"><div class="dot"></div><div><strong>Created ELEAGUE</strong><span>The esports league launched with TBS and Turner.</span></div></div>
+      <div class="cred"><div class="dot"></div><div><strong>Advises casinos</strong><span>Works directly with operators on what's next for the floor.</span></div></div>
+      <div class="cred"><div class="dot"></div><div><strong>AI-native</strong><span>A small team that moves fast, with AI built into how we work.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="team">
+  <div class="wrap">
+    <div class="eyebrow">Team</div>
+    <h2>Who&rsquo;s behind Foundry IV.</h2>
+    <div class="team">
+      <div class="person">
+        <div class="avatar">TS</div>
+        <div>
+        <h3>Tobias Sherman</h3>
+        <div class="role">Chief Executive Officer</div>
+        <p>Founded an esports agency that was sold to WME-IMG and created ELEAGUE with TBS and Turner. Today he also consults for casinos on the future of the gaming floor.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>&copy; <span id="yr">2026</span> Foundry IV. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+</body>
+</html>
